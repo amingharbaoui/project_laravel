@@ -1,6 +1,7 @@
 # Sportclub Website
 
-A dynamic, database-driven website for a local sports club, built with Laravel as part of the Web Development exam project. Features role-based authentication, a news system, a categorized FAQ, and a contact form that emails the club admin.
+A dynamic, database-driven website for a local sports club, built with Laravel as part of the Web Development exam project. Features role-based authentication, an admin user management panel, a news system with comments and tags, a categorized FAQ, and a contact form that emails the club admin.
+
 ![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?style=flat-square&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.4-4479A1?style=flat-square&logo=mysql&logoColor=white)
@@ -15,32 +16,62 @@ The chosen topic is a **local sports club**: news posts act as match reports/clu
 
 ## Features
 
-- **Authentication** — register, login/logout, "remember me", password reset (via Laravel Breeze)
-- **Roles** — every user is either a regular user or an admin; admins can promote/demote other users and create accounts manually
+### Core
+
+- **Authentication** — register, login/logout, "remember me", password reset (via Laravel Breeze), with a show/hide toggle on password fields
+- **Roles** — every user is either a regular user or an admin
+- **Admin user management** — admins can view all users, promote/demote them to admin, and manually create new accounts with a chosen role
 - **Public profiles** — every user has a public profile page (visible to guests) with an editable username, birthday, bio, and profile photo
-- **News** — admin-managed CRUD with image upload and tags (many-to-many relationship); public index and detail pages
+- **News** — admin-managed CRUD with image upload and tags (many-to-many relationship); public index and detail pages; admins can create new tags on the fly from the post form
 - **FAQ** — questions grouped by category, manageable by admins, visible to everyone
 - **Contact form** — sends an email to the admin with the submitted message (tested locally via Mailpit)
 
+### Extra features
+
+- **Comments** — logged-in users can comment on news posts; authors and admins can delete comments
+- **Dark / light theme toggle** — persisted across visits via `localStorage`
+- **Custom design system** — dark/light themed UI with a consistent color palette, animated page headers, scroll-reveal animations, and a fully responsive layout
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/login.png" alt="Login page" width="400"/></td>
+    <td><img src="docs/screenshots/register.png" alt="Register page" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Login</em></td>
+    <td align="center"><em>Register</em></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/dashboard.png" alt="Dashboard (dark mode)" width="400"/></td>
+    <td><img src="docs/screenshots/dashboard-light.png" alt="Dashboard (light mode)" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Dashboard — dark mode</em></td>
+    <td align="center"><em>Dashboard — light mode</em></td>
+  </tr>
+</table>
+
 ## Tech stack
 
-| |                                    |
-|---|------------------------------------|
-| Framework | Laravel 13                         |
-| Language | PHP 8.4                            |
-| Database | MySQL                              |
+| | |
+|---|---|
+| Framework | Laravel 13 |
+| Language | PHP 8.4 |
+| Database | MySQL |
 | Auth scaffolding | Laravel Breeze (Blade + Alpine.js) |
-| Styling | Tailwind CSS                       |
-| Local environment | Laragon                            |
-| Mail testing | Mailpit                            |
-| Version control | Git & GitHub                       |
+| Styling | Tailwind CSS |
+| Local environment | Laragon |
+| Mail testing | Mailpit |
+| Version control | Git & GitHub |
 
 ## Getting started
 
 You'll need PHP 8.2+, Composer, Node.js/npm, and MySQL (e.g. via [Laragon](https://laragon.org/) or [XAMPP](https://www.apachefriends.org/)).
 
 ```bash
-git clone https://github.com/[jouw-username]/[repo-naam].git
+git clone https://github.com/amingharbaoui/project_laravel.git
 cd project_laravel
 
 composer install
@@ -90,14 +121,19 @@ Start Mailpit from Laragon, submit the contact form, then check `http://localhos
 | Email | `admin@ehb.be` |
 | Password | `Password!321` |
 
-Seeded automatically via `AdminUserSeeder`.
+Seeded automatically via `AdminUserSeeder`. Additional admins can be created from `/admin/users` once logged in as an admin.
 
 ## Project structure highlights
 
-- **Relationships**: `User` → `News` (one-to-many), `News` ↔ `Tag` (many-to-many via `news_tag` pivot table), `FaqCategory` → `FaqItem` (one-to-many)
-- **Middleware**: custom `AdminMiddleware` (aliased as `admin`) restricts create/edit/delete routes to admin users
-- **Controllers**: resource controllers for `News`, `FaqCategory`, `FaqItem`
-- **Views**: two layouts (`app`, `guest`) plus reusable Blade components (`news-card`, `faq-category`)
+- **Relationships**:
+    - `User` → `News` (one-to-many)
+    - `User` → `Comment` (one-to-many)
+    - `News` → `Comment` (one-to-many)
+    - `News` ↔ `Tag` (many-to-many via `news_tag` pivot table)
+    - `FaqCategory` → `FaqItem` (one-to-many)
+- **Middleware**: custom `AdminMiddleware` (aliased as `admin`) restricts create/edit/delete routes and the user management panel to admin users
+- **Controllers**: resource-style controllers for `News`, `FaqCategory`, `FaqItem`, `Comment`, `Tag`, and `AdminUser`
+- **Views**: two layouts (`app`, `guest`) plus reusable Blade components (`news-card`, `faq-category`, `page-header`, `modal`, `dropdown`)
 - **Seeders**: `AdminUserSeeder`, `TagSeeder`, `FaqCategorySeeder`, `NewsSeeder` populate the database with realistic test data on `migrate:fresh --seed`
 
 ## References
@@ -112,10 +148,10 @@ Axllent. (n.d.). *Mailpit* [Software]. GitHub. https://github.com/axllent/mailpi
 
 ## Acknowledgements
 
-- [Awwwards](https://www.awwwards.com) for design inspiration
+- [Claude](https://claude.ai) for development assistance and debugging support
 - [Perplexity](https://perplexity.ai) for research support
 - [Stack Overflow](https://stackoverflow.com) for troubleshooting help
-- [Claude](https://claude.ai) for development assistance and debugging support
+- [Awwwards](https://www.awwwards.com) for design inspiration
 - Course materials and exercises from the Web Development class this project was built for
 
 ## Author
