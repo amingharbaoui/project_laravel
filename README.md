@@ -1,8 +1,7 @@
 # Sportclub Website
 
 A dynamic, database-driven website for a local sports club, built with Laravel as part of the Web Development exam project. Features role-based authentication, a news system, a categorized FAQ, and a contact form that emails the club admin.
-
-![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?style=flat-square&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.4-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
@@ -25,16 +24,16 @@ The chosen topic is a **local sports club**: news posts act as match reports/clu
 
 ## Tech stack
 
-| | |
-|---|---|
-| Framework | Laravel 12 |
-| Language | PHP 8.4 |
-| Database | MySQL |
+| |                                    |
+|---|------------------------------------|
+| Framework | Laravel 13                         |
+| Language | PHP 8.4                            |
+| Database | MySQL                              |
 | Auth scaffolding | Laravel Breeze (Blade + Alpine.js) |
-| Styling | Tailwind CSS |
-| Local environment | Laragon |
-| Mail testing | Mailpit |
-| Version control | Git & GitHub |
+| Styling | Tailwind CSS                       |
+| Local environment | Laragon                            |
+| Mail testing | Mailpit                            |
+| Version control | Git & GitHub                       |
 
 ## Getting started
 
@@ -42,7 +41,7 @@ You'll need PHP 8.2+, Composer, Node.js/npm, and MySQL (e.g. via [Laragon](https
 
 ```bash
 git clone https://github.com/[jouw-username]/[repo-naam].git
-cd [repo-naam]
+cd project_laravel
 
 composer install
 npm install && npm run build
@@ -114,6 +113,7 @@ Axllent. (n.d.). *Mailpit* [Software]. GitHub. https://github.com/axllent/mailpi
 ## Acknowledgements
 
 - [Perplexity](https://perplexity.ai) for research support
+- [Stack Overflow](https://stackoverflow.com) for troubleshooting help
 - [Claude](https://claude.ai) for development assistance and debugging support
 - Course materials and exercises from the Web Development class this project was built for
 
