@@ -140,6 +140,7 @@ Axllent. (n.d.). *Mailpit* [Software]. GitHub. https://github.com/axllent/mailpi
 - [Stack Overflow](https://stackoverflow.com) for troubleshooting help
 - [Awwwards](https://www.awwwards.com) for design inspiration
 - Course materials and exercises from the Web Development class this project was built for
+- [readme.so](https://readme.so/)) for readme writing
 
 ## Author
 
