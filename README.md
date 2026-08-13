@@ -34,24 +34,12 @@ The chosen topic is a **local sports club**: news posts act as match reports/clu
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td><img src="docs/screenshots/login.png" alt="Login page" width="400"/></td>
-    <td><img src="docs/screenshots/register.png" alt="Register page" width="400"/></td>
-  </tr>
-  <tr>
-    <td align="center"><em>Login</em></td>
-    <td align="center"><em>Register</em></td>
-  </tr>
-  <tr>
-    <td><img src="docs/screenshots/dashboard.png" alt="Dashboard (dark mode)" width="400"/></td>
-    <td><img src="docs/screenshots/dashboard-light.png" alt="Dashboard (light mode)" width="400"/></td>
-  </tr>
-  <tr>
-    <td align="center"><em>Dashboard — dark mode</em></td>
-    <td align="center"><em>Dashboard — light mode</em></td>
-  </tr>
-</table>
+<img width="2515" height="1583" alt="file-9a41dd9a2197532cff6478722901908f" src="https://github.com/user-attachments/assets/11662698-5979-4567-88de-395fcae03486" />
+<img width="3000" height="1747" alt="file-241cacaf0745daaaabcb920e7621a8b0" src="https://github.com/user-attachments/assets/f2f3c166-6103-4648-9905-ac75d9c143a8" />
+<img width="2823" height="1792" alt="file-c91d653ac96234d310b8a02c7e7df7a8" src="https://github.com/user-attachments/assets/b0a23384-572a-48ad-8adb-ac2af33f05e8" />
+<img width="2987" height="1265" alt="file-3bb9117ff754e8b3d72c8a2df0e248e2" src="https://github.com/user-attachments/assets/f564514d-2ce7-46d3-a385-19bdfd9e51f9" />
+<img width="2219" height="1617" alt="file-6e93fd701dc0771079cd8f72801536d1" src="https://github.com/user-attachments/assets/dee4bb20-b030-4990-b519-e5c37976f230" />
+
 
 ## Tech stack
 
