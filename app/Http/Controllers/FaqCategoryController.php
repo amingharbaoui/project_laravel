@@ -22,7 +22,7 @@ class FaqCategoryController extends Controller
 
         FaqCategory::create($validated);
 
-        return redirect()->route('faq.index')->with('success', 'Categorie aangemaakt.');
+        return redirect()->route('faq.index')->with('success', 'Category created.');
     }
 
     public function update(Request $request, FaqCategory $faqCategory)
@@ -33,13 +33,13 @@ class FaqCategoryController extends Controller
 
         $faqCategory->update($validated);
 
-        return redirect()->route('faq.index')->with('success', 'Categorie bijgewerkt.');
+        return redirect()->route('faq.index')->with('success', 'Category updated.');
     }
 
     public function destroy(FaqCategory $faqCategory)
     {
         $faqCategory->delete();
 
-        return redirect()->route('faq.index')->with('success', 'Categorie verwijderd.');
+        return redirect()->route('faq.index')->with('success', 'Category deleted.');
     }
 }

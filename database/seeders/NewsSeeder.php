@@ -16,18 +16,18 @@ class NewsSeeder extends Seeder
 
         $items = [
             [
-                'title' => 'Start van het nieuwe seizoen',
-                'content' => 'We zijn verheugd om het nieuwe seizoen af te trappen met een vernieuwd trainingsschema.',
+                'title' => 'Start of the new season',
+                'content' => 'We are excited to kick off the new season with a refreshed training schedule.',
                 'published_at' => now()->subDays(10),
             ],
             [
-                'title' => 'Overwinning tijdens de eerste wedstrijd',
-                'content' => 'Onze eerste ploeg won met een mooie score. Proficiat aan alle spelers!',
+                'title' => 'Victory in the first match',
+                'content' => 'Our first team won with a great score. Congratulations to all the players!',
                 'published_at' => now()->subDays(5),
             ],
             [
-                'title' => 'Jaarlijks eetfestijn aangekondigd',
-                'content' => 'Noteer alvast de datum in je agenda voor ons jaarlijks eetfestijn ten voordele van de club.',
+                'title' => 'Annual fundraising dinner announced',
+                'content' => 'Save the date for our annual fundraising dinner in support of the club.',
                 'published_at' => now()->subDays(1),
             ],
         ];

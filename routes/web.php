@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\FaqItemController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return auth()->check() ? redirect()->route('news.index') : redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -20,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/news/{news}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 Route::get('/users/{user}', [PublicProfileController::class, 'show'])->name('profile.show');
@@ -49,6 +55,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/faq-items', [FaqItemController::class, 'store'])->name('faq-items.store');
     Route::put('/faq-items/{faqItem}', [FaqItemController::class, 'update'])->name('faq-items.update');
     Route::delete('/faq-items/{faqItem}', [FaqItemController::class, 'destroy'])->name('faq-items.destroy');
+
+    Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
+
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::patch('/admin/users/{user}/toggle-admin', [AdminUserController::class, 'toggleAdmin'])->name('admin.users.toggle-admin');
 });
 
 require __DIR__.'/auth.php';

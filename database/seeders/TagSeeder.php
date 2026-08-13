@@ -9,7 +9,7 @@ class TagSeeder extends Seeder
 {
     public function run(): void
     {
-        $tags = ['Training', 'Wedstrijd', 'Evenement', 'Aankondiging'];
+        $tags = ['Training', 'Match', 'Event', 'Announcement'];
 
         foreach ($tags as $tag) {
             Tag::create(['name' => $tag]);

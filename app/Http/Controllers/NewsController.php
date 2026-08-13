@@ -18,7 +18,7 @@ class NewsController extends Controller
 
     public function show(News $news)
     {
-        $news->load('user', 'tags');
+        $news->load('user', 'tags', 'comments.user');
 
         return view('news.show', compact('news'));
     }
@@ -50,7 +50,7 @@ class NewsController extends Controller
         $news = News::create($validated);
         $news->tags()->sync($request->input('tags', []));
 
-        return redirect()->route('news.index')->with('success', 'Nieuwtje aangemaakt.');
+        return redirect()->route('news.index')->with('success', 'Post created.');
     }
 
     public function edit(News $news)
@@ -81,7 +81,7 @@ class NewsController extends Controller
         $news->update($validated);
         $news->tags()->sync($request->input('tags', []));
 
-        return redirect()->route('news.index')->with('success', 'Nieuwtje bijgewerkt.');
+        return redirect()->route('news.index')->with('success', 'Post updated.');
     }
 
     public function destroy(News $news)
@@ -92,6 +92,6 @@ class NewsController extends Controller
 
         $news->delete();
 
-        return redirect()->route('news.index')->with('success', 'Nieuwtje verwijderd.');
+        return redirect()->route('news.index')->with('success', 'Post deleted.');
     }
 }

@@ -112,6 +112,7 @@ Axllent. (n.d.). *Mailpit* [Software]. GitHub. https://github.com/axllent/mailpi
 
 ## Acknowledgements
 
+- [Awwwards](https://www.awwwards.com) for design inspiration
 - [Perplexity](https://perplexity.ai) for research support
 - [Stack Overflow](https://stackoverflow.com) for troubleshooting help
 - [Claude](https://claude.ai) for development assistance and debugging support

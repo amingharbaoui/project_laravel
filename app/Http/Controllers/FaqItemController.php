@@ -17,7 +17,7 @@ class FaqItemController extends Controller
 
         FaqItem::create($validated);
 
-        return redirect()->route('faq.index')->with('success', 'Vraag toegevoegd.');
+        return redirect()->route('faq.index')->with('success', 'Question added.');
     }
 
     public function update(Request $request, FaqItem $faqItem)
@@ -29,13 +29,13 @@ class FaqItemController extends Controller
 
         $faqItem->update($validated);
 
-        return redirect()->route('faq.index')->with('success', 'Vraag bijgewerkt.');
+        return redirect()->route('faq.index')->with('success', 'Question updated.');
     }
 
     public function destroy(FaqItem $faqItem)
     {
         $faqItem->delete();
 
-        return redirect()->route('faq.index')->with('success', 'Vraag verwijderd.');
+        return redirect()->route('faq.index')->with('success', 'Question deleted.');
     }
 }

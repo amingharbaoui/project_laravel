@@ -1,3 +1,131 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --color-base: #0B0B0D;
+    --color-surface: #151517;
+    --color-field: #1E1E21;
+    --color-ink: #F2F1EC;
+    --color-muted: #9A9A93;
+    --color-subtle: rgba(255, 255, 255, 0.1);
+    --dot-color: rgba(255, 255, 255, 0.06);
+}
+
+html.light {
+    --color-base: #F7F6F2;
+    --color-surface: #FFFFFF;
+    --color-field: #ECEAE3;
+    --color-ink: #17171A;
+    --color-muted: #5C5C57;
+    --color-subtle: rgba(0, 0, 0, 0.12);
+    --dot-color: rgba(0, 0, 0, 0.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-base);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#dot-bg {
+    background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-subtle);
+    border-radius: 999px;
+}
+
+/* Theme switch — iOS-style pill with a bouncy ball */
+.theme-switch {
+    position: relative;
+    width: 52px;
+    height: 30px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2a2f16, #1a1c0f);
+    border: 1px solid var(--color-subtle);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+html.light .theme-switch {
+    background: linear-gradient(135deg, #dfe6b8, #eef2d8);
+}
+
+.theme-switch-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #A8B23F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+}
+
+html.light .theme-switch-thumb {
+    transform: translateX(22px);
+    background: #E8703C;
+}
+
+.theme-switch-thumb svg {
+    width: 13px;
+    height: 13px;
+    color: #101006;
+    position: absolute;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.theme-switch-thumb .icon-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+.theme-switch-thumb .icon-sun {
+    opacity: 0;
+    transform: scale(0.5) rotate(-90deg);
+}
+
+html.light .theme-switch-thumb .icon-moon {
+    opacity: 0;
+    transform: scale(0.5) rotate(90deg);
+}
+html.light .theme-switch-thumb .icon-sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.theme-switch:active .theme-switch-thumb {
+    transform: translateX(0) scale(0.85);
+}
+html.light .theme-switch:active .theme-switch-thumb {
+    transform: translateX(22px) scale(0.85);
+}

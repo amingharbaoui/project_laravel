@@ -23,6 +23,6 @@ class ContactController extends Controller
 
         Mail::to('admin@ehb.be')->send(new ContactFormSubmitted($validated));
 
-        return redirect()->route('contact.create')->with('success', 'Bericht verzonden.');
+        return redirect()->route('contact.create')->with('success', 'Message sent.');
     }
 }
