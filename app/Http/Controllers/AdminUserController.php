@@ -51,4 +51,15 @@ class AdminUserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Role updated.');
     }
+
+    public function destroy(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot delete your own account.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'User deleted.');
+    }
 }

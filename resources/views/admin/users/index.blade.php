@@ -18,7 +18,7 @@
                 <div class="mb-4 p-3 bg-terracotta/20 text-terracotta rounded-2xl">{{ session('error') }}</div>
             @endif
 
-            <div class="reveal bg-surface border border-subtle rounded-3xl overflow-hidden">
+            <div class="reveal bg-surface border border-subtle rounded-3xl overflow-hidden" x-data="">
                 <table class="w-full text-sm">
                     <thead>
                         <tr class="border-b border-subtle text-left text-muted">
@@ -42,13 +42,19 @@
                                 </td>
                                 <td class="px-5 py-3 text-right">
                                     @if($user->id !== auth()->id())
-                                        <form action="{{ route('admin.users.toggle-admin', $user) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button type="submit" class="text-xs font-medium text-olive bg-olive/10 hover:bg-olive/20 px-3 py-1.5 rounded-full transition">
-                                                {{ $user->role === 'admin' ? 'Revoke admin' : 'Make admin' }}
+                                        <div class="flex justify-end gap-2">
+                                            <form action="{{ route('admin.users.toggle-admin', $user) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="text-xs font-medium text-olive bg-olive/10 hover:bg-olive/20 px-3 py-1.5 rounded-full transition">
+                                                    {{ $user->role === 'admin' ? 'Revoke admin' : 'Make admin' }}
+                                                </button>
+                                            </form>
+
+                                            <button type="button" x-on:click="$dispatch('open-modal', 'confirm-user-delete-{{ $user->id }}')" class="text-xs font-medium text-terracotta bg-terracotta/10 hover:bg-terracotta/20 px-3 py-1.5 rounded-full transition">
+                                                Delete
                                             </button>
-                                        </form>
+                                        </div>
                                     @else
                                         <span class="text-xs text-muted">You</span>
                                     @endif
@@ -65,4 +71,34 @@
 
         </div>
     </div>
+
+    @foreach($users as $user)
+        @if($user->id !== auth()->id())
+            <x-modal name="confirm-user-delete-{{ $user->id }}" focusable>
+                <div class="p-6">
+                    <h2 class="font-display font-700 text-lg text-ink">
+                        Delete {{ $user->name }}?
+                    </h2>
+
+                    <p class="mt-2 text-sm text-muted">
+                        This will permanently delete this user and all of their content (news, comments). This action cannot be undone.
+                    </p>
+
+                    <div class="mt-6 flex justify-end gap-3">
+                        <button type="button" x-on:click="$dispatch('close')" class="text-sm text-muted hover:text-ink px-5 py-2.5 transition">
+                            Cancel
+                        </button>
+
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-terracotta text-white font-medium px-6 py-2.5 rounded-full hover:brightness-110 transition">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </x-modal>
+        @endif
+    @endforeach
 </x-app-layout>

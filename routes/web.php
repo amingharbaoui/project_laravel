@@ -62,6 +62,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
     Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
     Route::patch('/admin/users/{user}/toggle-admin', [AdminUserController::class, 'toggleAdmin'])->name('admin.users.toggle-admin');
+    Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 require __DIR__.'/auth.php';

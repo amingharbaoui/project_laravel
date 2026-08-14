@@ -42,13 +42,30 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">{{ __('Profile') }}</x-dropdown-link>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                            <div class="px-4 py-3 border-b border-subtle mb-1">
+                                <p class="text-sm font-medium text-ink truncate">{{ Auth::user()->name }}</p>
+                                <p class="text-xs text-muted truncate">{{ Auth::user()->email }}</p>
+                            </div>
+
+                            <div class="px-1.5">
+                                <x-dropdown-link :href="route('profile.edit')" icon='<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>'>
+                                    {{ __('Edit Profile') }}
                                 </x-dropdown-link>
-                            </form>
+                                <x-dropdown-link :href="route('profile.show', auth()->user())" icon='<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>'>
+                                    {{ __('View Public Profile') }}
+                                </x-dropdown-link>
+                            </div>
+
+                            <div class="my-1 border-t border-subtle"></div>
+
+                            <div class="px-1.5 pb-1.5">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-dropdown-link :href="route('logout')" :danger="true" onclick="event.preventDefault(); this.closest('form').submit();" icon='<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>'>
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </div>
                         </x-slot>
                     </x-dropdown>
                 @else
@@ -97,7 +114,12 @@
                 <div class="font-medium text-base text-ink">{{ Auth::user()->name }}</div>
                 <div class="text-sm text-muted mb-3">{{ Auth::user()->email }}</div>
                 <div class="space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">Profile</x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        Edit Profile
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('profile.show', auth()->user())">
+                        View Public Profile
+                    </x-responsive-nav-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">Log Out</x-responsive-nav-link>
