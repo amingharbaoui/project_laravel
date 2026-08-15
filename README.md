@@ -10,7 +10,7 @@ A dynamic, database-driven website for a local sports club, built with Laravel a
 
 ## What is this?
 
-This project was built for the *Project 1 — Laravel* exam assignment. The goal was to build a data-driven website (not a set of static pages) around a self-chosen topic, implementing a login system with roles, public user profiles, an admin-managed news section, a categorized FAQ, and a contact form — on top of the standard Laravel conventions (Eloquent relationships, resource controllers, route middleware, CSRF/XSS protection).
+This project was built for the *Project 1 — Laravel* exam assignment. The goal was to build a data-driven website (not a set of static pages) around a self-chosen topic, implementing a login system with roles, public user profiles, an admin-managed news section, a categorized FAQ, and a contact form, on top of the standard Laravel conventions (Eloquent relationships, resource controllers, route middleware, CSRF/XSS protection).
 
 The chosen topic is a **local sports club**: news posts act as match reports/club announcements, and the FAQ covers membership and training questions.
 
